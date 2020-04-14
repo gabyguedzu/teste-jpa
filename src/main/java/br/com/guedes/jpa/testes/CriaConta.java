@@ -17,9 +17,20 @@ public class CriaConta {
 		conta.setAgencia(4545);
 		conta.setTitular("Gabriela Guedes");
 		conta.setNumero(45454);
+		conta.setSaldo(500.0);
 		
+		//maneged
 		em.getTransaction().begin();
 		em.persist(conta);
 		em.getTransaction().commit();
+		em.close();
+		
+		//detached
+		EntityManager em2 = emf.createEntityManager();
+		em2.getTransaction().begin();
+		conta.setSaldo(600.0);
+		em2.merge(conta);
+		em2.getTransaction().commit();
+		
 	}
 }
