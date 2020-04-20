@@ -3,12 +3,16 @@ package br.com.guedes.jpa.modelo;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
+import br.com.guedes.jpa.modelo.Conta;
+import br.com.guedes.jpa.modelo.TipoMovimentacao;
+
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Movimentacao {
@@ -23,6 +27,17 @@ public class Movimentacao {
 	private String descricao;
 	private BigDecimal valor;
 	
+	@ManyToOne
+	private Conta conta;
+	
+	public Conta getConta() {
+		return conta;
+	}
+
+	public void setConta(Conta conta) {
+		this.conta = conta;
+	}
+
 	public Long getId() {
 		return id;
 	}
